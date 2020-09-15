@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Month } from '../../models/month.model';
 import { MonthEnum } from '../../enums/month.enum';
-import { WeekDays } from '../../enums/weekdays.enum';
+import { MomentWeekDays } from '../../enums/momentWeekdays.enum';
 import * as Moment from "moment";
 
 @Injectable({
@@ -46,7 +46,7 @@ export class MonthService {
   }
 
   private _insertDaysBefore(day: Moment.Moment, weekday: number): void {
-    if (weekday !== WeekDays.sunday) {
+    if (weekday !== MomentWeekDays.sunday) {
       const dayBefore = this._copyWithoutReference(day.subtract(1, "day"));
       this.currentMonth.week_1.push(Moment(dayBefore));
 

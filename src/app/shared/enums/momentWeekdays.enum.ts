@@ -1,4 +1,4 @@
-export enum WeekDays {
+export enum MomentWeekDays {
   monday = 1,
   tuesday = 2,
   wednesday = 3,

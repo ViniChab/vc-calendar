@@ -16,13 +16,11 @@
       <td
         *ngFor="let day of [].constructor(monthEnum.daysInAWeek); let dayOfWeek = index"
         [ngClass]="{
-          'weekend': dayOfWeek == 0 || dayOfWeek == 6,
-          'off-month': monthService.currentMonth['week_' + (weekNumber + 1)][dayOfWeek].format('MMM') != monthService.currentMonth.name
+          'weekend': isWeekend(dayOfWeek, dayOfWeek),
+          'off-month': isOffMonth(weekNumber, dayOfWeek)
         }"
       >
-        {{
-          monthService.currentMonth["week_" + (weekNumber + 1)][dayOfWeek].format("DD")
-        }}
+        {{ monthService.currentMonth | day: weekNumber : dayOfWeek }}
       </td>
     </tr>
   </table>
