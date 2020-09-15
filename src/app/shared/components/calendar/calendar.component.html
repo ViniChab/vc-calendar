@@ -1,14 +1,20 @@
 <div class="calendar-wrapper">
-  {{ monthService.currentMonth.name }}
+
+  <div class="month-selector">
+    <button (click)="previousMonth()" class="btn btn-primary previous-btn"> Previous </button>
+    <p> {{ "month." + currentMonth | translate }} </p>
+    <button (click)="nextMonth()" class="btn btn-primary next-btn"> Next </button>
+  </div>
+
   <table cellspacing="0" cellpadding="0">
     <tr>
-      <th>{{ "calendar.sunday" | translate }}</th>
-      <th>{{ "calendar.monday" | translate }}</th>
-      <th>{{ "calendar.tuesday" | translate }}</th>
-      <th>{{ "calendar.wednesday" | translate }}</th>
-      <th>{{ "calendar.thursday" | translate }}</th>
-      <th>{{ "calendar.friday" | translate }}</th>
-      <th>{{ "calendar.saturday" | translate }}</th>
+      <th>{{ "weekday.sunday" | translate }}</th>
+      <th>{{ "weekday.monday" | translate }}</th>
+      <th>{{ "weekday.tuesday" | translate }}</th>
+      <th>{{ "weekday.wednesday" | translate }}</th>
+      <th>{{ "weekday.thursday" | translate }}</th>
+      <th>{{ "weekday.friday" | translate }}</th>
+      <th>{{ "weekday.saturday" | translate }}</th>
     </tr>
     <tr
       *ngFor="let week of [].constructor(monthEnum.weeksInAMonth); let weekNumber = index"
@@ -16,7 +22,7 @@
       <td
         *ngFor="let day of [].constructor(monthEnum.daysInAWeek); let dayOfWeek = index"
         [ngClass]="{
-          'weekend': isWeekend(dayOfWeek, dayOfWeek),
+          'weekend': isWeekend(dayOfWeek),
           'off-month': isOffMonth(weekNumber, dayOfWeek)
         }"
       >

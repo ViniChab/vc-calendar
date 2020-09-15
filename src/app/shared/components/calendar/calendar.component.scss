@@ -1,6 +1,32 @@
 .calendar-wrapper {
-  width: 100%;
+  max-width: 900px;
+  width: 98%;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  .month-selector {
+    margin: 16px 0;
+
+    p {
+      display: inline;
+      font-size: 36px;
+    }
+
+    button {
+      display: inline-block;
+      width: 100px;
+      margin-top: 7px;
+    }
+
+    .previous-btn {
+      float: left;
+    }
+
+    .next-btn {
+      float: right;
+    }
+  }
 
   table {
     margin-left: auto;
@@ -9,14 +35,14 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
 
     th {
-      background: #3966b8;
+      background: #007bff;
       color: white;
       width: 132px;
       height: 32px;
     }
 
     td {
-      height: 72px;
+      height: 92px;
       border: 1px solid rgba(0, 0, 0, 0.1);
       font-weight: bold;
       text-align: left;
@@ -25,8 +51,8 @@
     }
 
     .weekend {
-      background: rgba(57, 102, 184, 0.1);
-      color: #3966b8;
+      background: rgba(0, 123, 255, 0.1);
+      color: #007bff;
     }
 
     .off-month {

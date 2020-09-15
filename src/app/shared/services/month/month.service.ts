@@ -9,8 +9,9 @@ import * as Moment from "moment";
   providedIn: 'root'
 })
 export class MonthService {
+  public selectedMonth = Moment().month();
   public currentMonth: Month = {
-    name: Moment().format('MMM'),
+    today: Moment(),
     week_1: [],
     week_2: [],
     week_3: [],
@@ -21,8 +22,9 @@ export class MonthService {
 
   constructor() { }
 
-  public setupMonth(): void {
-    this._setFirstDays();
+  public setupMonth(month = Moment().month()): void {
+    this._reset(month)
+    this._setFirstDays(month);
     let dayOfMonth = 1;
 
     for (let weekNumber = 1; weekNumber <= MonthEnum.weeksInAMonth; weekNumber++) {
@@ -30,16 +32,15 @@ export class MonthService {
 
       while (dayOfWeek < MonthEnum.daysInAWeek) {
         const week = this.currentMonth[`week_${weekNumber}`];
-        const date = Moment().date(dayOfMonth++);
+        const date = Moment().month(month).date(dayOfMonth++);
         week.push(date);
         dayOfWeek++;
       }
     }
   }
 
-
-  private _setFirstDays(): void {
-    const firstDay = Moment().date(1);
+  private _setFirstDays(month: number): void {
+    const firstDay = Moment().month(month).date(1);
     const weekday = firstDay.isoWeekday();
 
     this._insertDaysBefore(firstDay, weekday);
@@ -56,5 +57,17 @@ export class MonthService {
 
   private _copyWithoutReference(element: unknown): unknown {
     return JSON.parse(JSON.stringify(element));
+  }
+
+  private _reset(month) {
+    this.currentMonth = {
+      today: Moment().month(month),
+      week_1: [],
+      week_2: [],
+      week_3: [],
+      week_4: [],
+      week_5: [],
+      week_6: []
+    };
   }
 }
