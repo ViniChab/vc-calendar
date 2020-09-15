@@ -1,6 +1,7 @@
 import * as Moment from "moment";
 
 export interface Month {
+  name: string,
   week_1: Moment.Moment[];
   week_2: Moment.Moment[];
   week_3: Moment.Moment[];

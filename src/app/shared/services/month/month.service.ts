@@ -10,6 +10,7 @@ import * as Moment from "moment";
 })
 export class MonthService {
   public currentMonth: Month = {
+    name: Moment().format('MMM'),
     week_1: [],
     week_2: [],
     week_3: [],

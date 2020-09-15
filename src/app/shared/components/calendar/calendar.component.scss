@@ -1,0 +1,36 @@
+.calendar-wrapper {
+  width: 100%;
+  text-align: center;
+
+  table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+    th {
+      background: #3966b8;
+      color: white;
+      width: 132px;
+      height: 32px;
+    }
+
+    td {
+      height: 72px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      font-weight: bold;
+      text-align: left;
+      padding: 16px;
+      vertical-align: text-bottom;
+    }
+
+    .weekend {
+      background: rgba(57, 102, 184, 0.1);
+      color: #3966b8;
+    }
+
+    .off-month {
+      color: #7d7d7d;
+    }
+  }
+}

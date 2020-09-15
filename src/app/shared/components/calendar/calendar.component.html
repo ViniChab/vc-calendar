@@ -1,6 +1,6 @@
 <div class="calendar-wrapper">
-  September
-  <table>
+  {{ monthService.currentMonth.name }}
+  <table cellspacing="0" cellpadding="0">
     <tr>
       <th>{{ "calendar.sunday" | translate }}</th>
       <th>{{ "calendar.monday" | translate }}</th>
@@ -11,21 +11,17 @@
       <th>{{ "calendar.saturday" | translate }}</th>
     </tr>
     <tr
-      *ngFor="
-        let week of [].constructor(monthEnum.weeksInAMonth);
-        let weekNumber = index
-      "
+      *ngFor="let week of [].constructor(monthEnum.weeksInAMonth); let weekNumber = index"
     >
       <td
-        *ngFor="
-          let day of [].constructor(monthEnum.daysInAWeek);
-          let dayOfWeek = index
-        "
+        *ngFor="let day of [].constructor(monthEnum.daysInAWeek); let dayOfWeek = index"
+        [ngClass]="{
+          'weekend': dayOfWeek == 0 || dayOfWeek == 6,
+          'off-month': monthService.currentMonth['week_' + (weekNumber + 1)][dayOfWeek].format('MMM') != monthService.currentMonth.name
+        }"
       >
         {{
-          monthService.currentMonth["week_" + (weekNumber + 1)][
-            dayOfWeek
-          ].format("DD")
+          monthService.currentMonth["week_" + (weekNumber + 1)][dayOfWeek].format("DD")
         }}
       </td>
     </tr>
