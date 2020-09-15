@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,9 @@ import { CalendarComponent } from './components/calendar/calendar.component';
     CalendarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    TranslateModule,
   ]
 })
+
 export class SharedModule { }

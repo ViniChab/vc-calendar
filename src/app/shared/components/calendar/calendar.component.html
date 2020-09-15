@@ -1,1 +1,19 @@
-<p>calendar works!</p>
+<div class="calendar-wrapper">
+  September
+  <table>
+    <tr>
+      <th>{{ "calendar.sunday" | translate }}</th>
+      <th>{{ "calendar.monday" | translate }}</th>
+      <th>{{ "calendar.tuesday" | translate }}</th>
+      <th>{{ "calendar.wednesday" | translate }}</th>
+      <th>{{ "calendar.thursday" | translate }}</th>
+      <th>{{ "calendar.friday" | translate }}</th>
+      <th>{{ "calendar.saturday" | translate }}</th>
+    </tr>
+    <tr *ngFor="let week of [].constructor(weeksInAMonth); let weekNumber = index">
+      <td *ngFor="let day of [].constructor(daysInAWeek); let dayOfWeek = index">
+        {{ currentMonth['week_' + (weekNumber + 1)][dayOfWeek].format("DD") }}
+      </td>
+    </tr>
+  </table>
+</div>
