@@ -2,7 +2,7 @@
 
   <div class="month-selector">
     <button (click)="previousMonth()" class="btn btn-primary previous-btn"> Previous </button>
-    <p> {{ "month." + currentMonth | translate }} </p>
+    <p> {{ "month." + selectedMonth | translate }} {{ currentYear }} </p>
     <button (click)="nextMonth()" class="btn btn-primary next-btn"> Next </button>
   </div>
 

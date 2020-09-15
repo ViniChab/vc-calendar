@@ -9,7 +9,9 @@ import * as Moment from "moment";
   providedIn: 'root'
 })
 export class MonthService {
-  public selectedMonth = Moment().month();
+
+  public currentYear = Moment().format('YYYY');
+  public currentMonthNumber = Moment().month();
   public currentMonth: Month = {
     today: Moment(),
     week_1: [],
@@ -37,6 +39,22 @@ export class MonthService {
         dayOfWeek++;
       }
     }
+  }
+
+  public getDesiredMonth(type: "next" | "previous"): Moment.Moment {
+    const currentMonthNumber = this.currentMonthNumber;
+    let desiredMonth: Moment.Moment;
+
+    if (type == "next") {
+      this.currentMonthNumber++;
+      desiredMonth = Moment().month(currentMonthNumber).add(1, 'month');
+    } else {
+      this.currentMonthNumber--;
+      desiredMonth = Moment().month(currentMonthNumber).subtract(1, 'month');
+    }
+
+    this.currentYear = desiredMonth.format('YYYY');
+    return desiredMonth;
   }
 
   private _setFirstDays(month: number): void {

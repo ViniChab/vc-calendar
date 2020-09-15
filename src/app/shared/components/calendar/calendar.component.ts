@@ -29,16 +29,12 @@ export class CalendarComponent implements OnInit {
   }
 
   public nextMonth(): void {
-    const nextMonth = Moment().month(this.monthService.selectedMonth).add(1, 'month');
-    this.monthService.selectedMonth = nextMonth.month();
-
+    const nextMonth = this.monthService.getDesiredMonth('next');
     this.monthService.setupMonth(nextMonth.month());
   }
 
   public previousMonth(): void {
-    const previousMonth = Moment().month(this.monthService.selectedMonth).subtract(1, 'month');
-    this.monthService.selectedMonth = previousMonth.month();
-
+    const previousMonth = this.monthService.getDesiredMonth('previous');
     this.monthService.setupMonth(previousMonth.month());
   }
 
@@ -46,7 +42,11 @@ export class CalendarComponent implements OnInit {
     return dayOfWeek == this.weekDays.sunday || dayOfWeek == this.weekDays.saturday;
   }
 
-  public get currentMonth(): string {
+  public get selectedMonth(): string {
     return this.monthService.currentMonth.today.format("MMM");
+  }
+
+  public get currentYear(): string {
+    return this.monthService.currentYear;
   }
 }
