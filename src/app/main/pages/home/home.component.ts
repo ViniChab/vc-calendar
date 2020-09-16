@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Reminder } from '../../../shared/models/reminder.model';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,7 +11,9 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
+  public onReminderAdded(reminder: Reminder): void {
+    console.log(reminder)
+  }
 }

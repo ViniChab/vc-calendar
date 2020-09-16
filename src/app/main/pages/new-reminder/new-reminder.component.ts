@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { faPlus, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 
-import { cityValidator } from "../../../shared/validators/city.validator"
+import { WeatherService } from "../../../shared/services/weather/weather.service";
 
 @Component({
   selector: "app-reminder",
@@ -10,16 +10,25 @@ import { cityValidator } from "../../../shared/validators/city.validator"
   styleUrls: ["./new-reminder.component.scss"],
 })
 export class NewReminderComponent implements OnInit {
+
+  @Output() public added = new EventEmitter();
   public faPlus: IconDefinition = faPlus;
   public modalOpen: boolean = false;
   public submitted: boolean = false;
+  public isCityValid: boolean = true;
+  public loading: boolean = false;
   public newReminderForm: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {
+  @ViewChild("city") private _city: ElementRef;
+
+  constructor(
+    private _weatherService: WeatherService,
+    private _formBuilder: FormBuilder
+  ) {
     this._resetForm();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   public openModal(): void {
     this.modalOpen = true;
@@ -30,19 +39,37 @@ export class NewReminderComponent implements OnInit {
     this._resetForm();
   }
 
-  private _resetForm(): void {
-    this.submitted = false;
-    this.newReminderForm = this._formBuilder.group({
-      label: ["", [Validators.required, Validators.maxLength(30)]],
-      day: ["", [Validators.required]],
-      time: ["", [Validators.required]],
-      city: ["", [Validators.required, cityValidator]],
+  public validateCity(city: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this._weatherService.isCityValid(city).subscribe((res) => {
+        res ? resolve() : reject();
+      });
     });
   }
 
   public submit(): void {
-    console.log(this.newReminderForm)
-    console.log("submit");
     this.submitted = true;
+
+    if (this.newReminderForm.valid) {
+      this.loading = true;
+      this.validateCity(this._city.nativeElement.value).then(res => {
+        this.added.emit(this.newReminderForm.getRawValue());
+        this.closeModal();
+      }).catch(error => {
+        this.isCityValid = false;
+        this.loading = false;
+      })
+    }
+  }
+
+  private _resetForm(): void {
+    this.submitted = false;
+    this.loading = false;
+    this.newReminderForm = this._formBuilder.group({
+      label: ["", [Validators.required, Validators.maxLength(30)]],
+      day: ["", [Validators.required]],
+      time: ["", [Validators.required]],
+      city: ["", [Validators.required]],
+    });
   }
 }

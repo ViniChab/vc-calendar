@@ -32,6 +32,7 @@
         <label for="label"> {{ "label.time" | translate }} </label>
         <input
           mask="Hh:m0"
+          [dropSpecialCharacters]="false"
           placeholder="13:00"
           type="text"
           class="form-control"
@@ -52,6 +53,7 @@
         <label for="label"> {{ "label.day" | translate }} </label>
         <input
           mask="d0/M0/0000"
+          [dropSpecialCharacters]="false"
           placeholder="16/02/2020"
           type="text"
           class="form-control"
@@ -71,6 +73,7 @@
 
         <label for="label"> {{ "label.city" | translate }} </label>
         <input
+          #city
           placeholder="London"
           type="text"
           class="form-control"
@@ -79,21 +82,21 @@
           [formControlName]="'city'"
           [ngClass]="{
             'is-invalid':
-              ( newReminderForm.controls['city'].errors.required ||
-                newReminderForm.controls['city'].errors.cityNotFound ) &&
+              (newReminderForm.controls['city'].errors?.required ||
+                !isCityValid) &&
               submitted
           }"
         />
         <small
-          *ngIf="newReminderForm.controls['city'].errors.required && submitted"
+          *ngIf="newReminderForm.controls['city'].errors?.required && submitted"
           class="text-danger"
         >
           {{ "error.required" | translate }}
         </small>
         <small
           *ngIf="
-            newReminderForm.controls['city'].errors.cityNotFound &&
-            !newReminderForm.controls['city'].errors.required &&
+            !newReminderForm.controls['city'].errors?.required &&
+            !isCityValid &&
             submitted
           "
           class="text-danger"
@@ -111,7 +114,10 @@
           {{ "label.cancel" | translate }}
         </button>
         <button type="submit" class="btn btn-primary">
-          {{ "label.save" | translate }}
+          <ng-container *ngIf="!loading">
+            {{ "label.save" | translate }}
+          </ng-container>
+          <img *ngIf="loading" src="../../../../assets/icons/btn-loading.svg" />
         </button>
       </div>
     </form>

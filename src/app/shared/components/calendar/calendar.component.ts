@@ -3,7 +3,6 @@ import { Component, OnInit } from "@angular/core";
 import { MonthService } from "../../services/month/month.service";
 import { MonthEnum } from "../../enums/month.enum";
 import { WeekDays } from "../../enums/weekDays.enum";
-import * as Moment from 'moment';
 
 @Component({
   selector: "app-calendar",
