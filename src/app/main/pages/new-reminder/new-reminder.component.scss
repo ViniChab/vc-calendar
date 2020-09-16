@@ -1,0 +1,44 @@
+.add-btn {
+  font-size: 24px;
+  width: 62px;
+  height: 62px;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  border-radius: 50%;
+
+  fa-icon {
+    filter: brightness(0) invert(1);
+  }
+}
+
+form {
+  .form-group {
+    label {
+      margin-bottom: 6px;
+
+      &:not(:first-child) {
+        margin-top: 25px;
+      }
+    }
+
+    small {
+      position: absolute;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+  }
+
+  .buttons-wrapper {
+    width: 100%;
+    text-align: right;
+
+    button {
+      margin-top: 15px;
+
+      &:last-child {
+        margin-left: 8px;
+      }
+    }
+  }
+}

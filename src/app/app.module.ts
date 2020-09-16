@@ -8,7 +8,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { HomeModule } from './main/home/home.module';
+import { PagesModule } from './main/pages/pages.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -22,7 +23,8 @@ export function createTranslateLoader(http: HttpClient) {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    HomeModule,
+    PagesModule,
+    FontAwesomeModule,
     SharedModule,
     CommonModule,
     TranslateModule.forRoot({

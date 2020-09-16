@@ -1,0 +1,11 @@
+<div [ngClass]="{ hidden: !isOpen }" class="modal-backdrop"></div>
+<div [ngClass]="{ hidden: !isOpen }" class="modal-wrapper">
+  <div class="modal-header">
+    <h1>
+      <ng-content select="[header]"></ng-content>
+    </h1>
+  </div>
+  <div class="modal-body">
+    <ng-content select="[body]"></ng-content>
+  </div>
+</div>

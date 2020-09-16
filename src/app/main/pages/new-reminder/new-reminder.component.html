@@ -1,0 +1,119 @@
+<button (click)="openModal()" class="btn btn-primary add-btn">
+  <fa-icon [icon]="faPlus"></fa-icon>
+</button>
+
+<app-generic-modal [isOpen]="modalOpen">
+  <ng-container header> {{ "title.newReminder" | translate }} </ng-container>
+  <ng-container body>
+    <form (submit)="submit()" [formGroup]="newReminderForm">
+      <div class="form-group">
+        <label for="label"> {{ "label.label" | translate }} </label>
+        <input
+          placeholder="Go buy some milk"
+          type="text"
+          class="form-control"
+          id="label"
+          name="label"
+          [formControlName]="'label'"
+          [ngClass]="{
+            'is-invalid': newReminderForm.controls['label'].invalid && submitted
+          }"
+        />
+        <small *ngIf="!newReminderForm.controls['label'].invalid || !submitted">
+          {{ "info.maximum30" | translate }}
+        </small>
+        <small
+          *ngIf="newReminderForm.controls['label'].invalid && submitted"
+          class="text-danger"
+        >
+          {{ "error.maximum30Error" | translate }}
+        </small>
+
+        <label for="label"> {{ "label.time" | translate }} </label>
+        <input
+          mask="Hh:m0"
+          placeholder="13:00"
+          type="text"
+          class="form-control"
+          id="time"
+          name="time"
+          [formControlName]="'time'"
+          [ngClass]="{
+            'is-invalid': newReminderForm.controls['time'].invalid && submitted
+          }"
+        />
+        <small
+          *ngIf="newReminderForm.controls['time'].invalid && submitted"
+          class="text-danger"
+        >
+          {{ "error.required" | translate }}
+        </small>
+
+        <label for="label"> {{ "label.day" | translate }} </label>
+        <input
+          mask="d0/M0/0000"
+          placeholder="16/02/2020"
+          type="text"
+          class="form-control"
+          id="day"
+          name="day"
+          [formControlName]="'day'"
+          [ngClass]="{
+            'is-invalid': newReminderForm.controls['day'].invalid && submitted
+          }"
+        />
+        <small
+          *ngIf="newReminderForm.controls['day'].invalid && submitted"
+          class="text-danger"
+        >
+          {{ "error.required" | translate }}
+        </small>
+
+        <label for="label"> {{ "label.city" | translate }} </label>
+        <input
+          placeholder="London"
+          type="text"
+          class="form-control"
+          id="city"
+          name="city"
+          [formControlName]="'city'"
+          [ngClass]="{
+            'is-invalid':
+              ( newReminderForm.controls['city'].errors.required ||
+                newReminderForm.controls['city'].errors.cityNotFound ) &&
+              submitted
+          }"
+        />
+        <small
+          *ngIf="newReminderForm.controls['city'].errors.required && submitted"
+          class="text-danger"
+        >
+          {{ "error.required" | translate }}
+        </small>
+        <small
+          *ngIf="
+            newReminderForm.controls['city'].errors.cityNotFound &&
+            !newReminderForm.controls['city'].errors.required &&
+            submitted
+          "
+          class="text-danger"
+        >
+          {{ "error.cityNotFound" | translate }}
+        </small>
+      </div>
+
+      <div class="buttons-wrapper">
+        <button
+          (click)="closeModal()"
+          type="button"
+          class="btn btn-outline-primary"
+        >
+          {{ "label.cancel" | translate }}
+        </button>
+        <button type="submit" class="btn btn-primary">
+          {{ "label.save" | translate }}
+        </button>
+      </div>
+    </form>
+  </ng-container>
+</app-generic-modal>

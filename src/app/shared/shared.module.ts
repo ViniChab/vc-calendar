@@ -3,14 +3,17 @@ import { CommonModule } from '@angular/common';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { DayPipe } from './pipes/day.pipe';
+import { GenericModalComponent } from './components/generic-modal/generic-modal.component';
 
 @NgModule({
   declarations: [
     CalendarComponent,
-    DayPipe
+    GenericModalComponent,
+    DayPipe,
   ],
   exports: [
-    CalendarComponent
+    CalendarComponent,
+    GenericModalComponent
   ],
   imports: [
     CommonModule,

@@ -21,5 +21,24 @@
     "Oct": "October",
     "Nov": "November",
     "Dec": "December"
+  },
+  "label": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "label": "Label",
+    "time": "Time",
+    "day": "Day",
+    "city": "City"
+  },
+  "title": {
+    "newReminder": "New reminder"
+  },
+  "error": {
+    "required": "This field is required",
+    "maximum30Error": "This field is required and should not have more than 30 characters",
+    "cityNotFound": "City not found"
+  },
+  "info": {
+    "maximum30": "Maximum 30 characters"
   }
 }
