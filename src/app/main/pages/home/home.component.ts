@@ -8,12 +8,12 @@ import { Reminder } from '../../../shared/models/reminder.model';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  public reminders: Reminder[] = [];
   constructor() { }
 
   ngOnInit(): void { }
 
   public onReminderAdded(reminder: Reminder): void {
-    console.log(reminder)
+    this.reminders.push(reminder);
   }
 }

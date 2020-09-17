@@ -6,7 +6,7 @@
     <button (click)="nextMonth()" class="btn btn-primary next-btn"> Next </button>
   </div>
 
-  <table cellspacing="0" cellpadding="0">
+  <table>
     <tr>
       <th>{{ "weekday.sunday" | translate }}</th>
       <th>{{ "weekday.monday" | translate }}</th>
@@ -27,6 +27,15 @@
         }"
       >
         {{ monthService.currentMonth | day: weekNumber : dayOfWeek }}
+        <div class="reminder-wrapper">
+          <ng-container
+            *ngFor="let reminder of remindersThisDay(weekNumber, dayOfWeek); let i = index"
+          >
+            <div [title]="reminder.label" class="reminder color_{{i % 10}}">
+              {{reminder.label}}
+            </div>
+          </ng-container>
+        </div>
       </td>
     </tr>
   </table>

@@ -9,6 +9,7 @@
       <div class="form-group">
         <label for="label"> {{ "label.label" | translate }} </label>
         <input
+          autocomplete="off"
           placeholder="Go buy some milk"
           type="text"
           class="form-control"
@@ -32,12 +33,13 @@
         <label for="label"> {{ "label.time" | translate }} </label>
         <input
           mask="Hh:m0"
-          [dropSpecialCharacters]="false"
+          autocomplete="off"
           placeholder="13:00"
           type="text"
           class="form-control"
           id="time"
           name="time"
+          [dropSpecialCharacters]="false"
           [formControlName]="'time'"
           [ngClass]="{
             'is-invalid': newReminderForm.controls['time'].invalid && submitted
@@ -52,13 +54,14 @@
 
         <label for="label"> {{ "label.day" | translate }} </label>
         <input
+          autocomplete="off"
           mask="d0/M0/0000"
-          [dropSpecialCharacters]="false"
           placeholder="16/02/2020"
           type="text"
           class="form-control"
           id="day"
           name="day"
+          [dropSpecialCharacters]="false"
           [formControlName]="'day'"
           [ngClass]="{
             'is-invalid': newReminderForm.controls['day'].invalid && submitted
@@ -74,6 +77,7 @@
         <label for="label"> {{ "label.city" | translate }} </label>
         <input
           #city
+          autocomplete="off"
           placeholder="London"
           type="text"
           class="form-control"

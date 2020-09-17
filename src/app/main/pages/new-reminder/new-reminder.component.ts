@@ -1,8 +1,10 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { faPlus, IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import * as Moment from 'moment';
 
 import { WeatherService } from "../../../shared/services/weather/weather.service";
+import { Reminder } from 'src/app/shared/models/reminder.model';
 
 @Component({
   selector: "app-reminder",
@@ -53,7 +55,11 @@ export class NewReminderComponent implements OnInit {
     if (this.newReminderForm.valid) {
       this.loading = true;
       this.validateCity(this._city.nativeElement.value).then(res => {
-        this.added.emit(this.newReminderForm.getRawValue());
+        const reminderForm: Reminder = this.newReminderForm.getRawValue();
+        reminderForm.day = Moment(reminderForm.day, "DD/MM/YYYY");
+        reminderForm.time = Moment(reminderForm.time, "HH:mm");
+
+        this.added.emit(reminderForm);
         this.closeModal();
       }).catch(error => {
         this.isCityValid = false;
@@ -65,6 +71,7 @@ export class NewReminderComponent implements OnInit {
   private _resetForm(): void {
     this.submitted = false;
     this.loading = false;
+    this.isCityValid = true;
     this.newReminderForm = this._formBuilder.group({
       label: ["", [Validators.required, Validators.maxLength(30)]],
       day: ["", [Validators.required]],

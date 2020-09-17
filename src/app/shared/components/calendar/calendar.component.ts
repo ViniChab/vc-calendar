@@ -1,8 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 
 import { MonthService } from "../../services/month/month.service";
 import { MonthEnum } from "../../enums/month.enum";
 import { WeekDays } from "../../enums/weekDays.enum";
+import { Reminder } from '../../models/reminder.model';
 
 @Component({
   selector: "app-calendar",
@@ -10,6 +11,7 @@ import { WeekDays } from "../../enums/weekDays.enum";
   styleUrls: ["./calendar.component.scss"],
 })
 export class CalendarComponent implements OnInit {
+  @Input() public reminders: Reminder[];
   public readonly monthEnum = MonthEnum;
   public readonly weekDays = WeekDays;
 
@@ -37,8 +39,24 @@ export class CalendarComponent implements OnInit {
     this.monthService.setupMonth(previousMonth.month());
   }
 
+  public remindersThisDay(weekNumber: number, dayOfWeek: number) {
+    const week = this.monthService.getWeek(++weekNumber);
+    if (week) {
+      const remindersThisDay = this.reminders.filter( reminder => {
+        if (reminder.day.isSame(week[dayOfWeek], "day"))
+          return reminder;
+      })
+      return remindersThisDay;
+    }
+    return [];
+  }
+
   public isWeekend(dayOfWeek: number): boolean {
     return dayOfWeek == this.weekDays.sunday || dayOfWeek == this.weekDays.saturday;
+  }
+
+  public getWeek(weekNumber) {
+    return this.monthService.currentMonth["week_" + (weekNumber + 1)];
   }
 
   public get selectedMonth(): string {

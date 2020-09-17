@@ -30,15 +30,19 @@ export class MonthService {
     let dayOfMonth = 1;
 
     for (let weekNumber = 1; weekNumber <= MonthEnum.weeksInAMonth; weekNumber++) {
-      let dayOfWeek = this.currentMonth[`week_${weekNumber}`].length;
+      let dayOfWeek = this.getWeek(weekNumber).length;
 
       while (dayOfWeek < MonthEnum.daysInAWeek) {
-        const week = this.currentMonth[`week_${weekNumber}`];
+        const week = this.getWeek(weekNumber);
         const date = Moment().month(month).date(dayOfMonth++);
         week.push(date);
         dayOfWeek++;
       }
     }
+  }
+
+  public getWeek(weekNumber: number): Moment.Moment[] {
+    return this.currentMonth[`week_${weekNumber}`];
   }
 
   public getDesiredMonth(type: "next" | "previous"): Moment.Moment {
