@@ -4,6 +4,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { DayPipe } from './pipes/day.pipe';
 import { GenericModalComponent } from './components/generic-modal/generic-modal.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { GenericModalComponent } from './components/generic-modal/generic-modal.
   imports: [
     CommonModule,
     TranslateModule,
+    FontAwesomeModule
   ]
 })
 

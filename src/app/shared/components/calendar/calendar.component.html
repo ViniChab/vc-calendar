@@ -22,8 +22,8 @@
       <td
         *ngFor="let day of [].constructor(monthEnum.daysInAWeek); let dayOfWeek = index"
         [ngClass]="{
-          'weekend': isWeekend(dayOfWeek),
-          'off-month': isOffMonth(weekNumber, dayOfWeek)
+          'weekend': monthService.isWeekend(dayOfWeek),
+          'off-month': monthService.isOffMonth(weekNumber, dayOfWeek)
         }"
       >
         {{ monthService.currentMonth | day: weekNumber : dayOfWeek }}
@@ -31,7 +31,10 @@
           <ng-container
             *ngFor="let reminder of remindersThisDay(weekNumber, dayOfWeek); let i = index"
           >
-            <div [title]="reminder.label" class="reminder color_{{i % 10}}">
+            <div [title]="reminder.label" class="reminder color_{{weekNumber + dayOfWeek + i % 10}}">
+              <fa-icon
+                [icon]="weatherService.getWeather(monthService.getDay(weekNumber, dayOfWeek))"
+              ></fa-icon>
               {{reminder.label}}
             </div>
           </ng-container>

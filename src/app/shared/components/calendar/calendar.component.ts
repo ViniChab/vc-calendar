@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { HttpClient } from '@angular/common/http';
+import * as Moment from 'moment';
 
 import { MonthService } from "../../services/month/month.service";
-import { MonthEnum } from "../../enums/month.enum";
-import { WeekDays } from "../../enums/weekDays.enum";
 import { Reminder } from '../../models/reminder.model';
+import { WeatherService } from '../../services/weather/weather.service';
+import { MonthEnum } from '../../enums/month.enum';
 
 @Component({
   selector: "app-calendar",
@@ -11,23 +13,19 @@ import { Reminder } from '../../models/reminder.model';
   styleUrls: ["./calendar.component.scss"],
 })
 export class CalendarComponent implements OnInit {
-  @Input() public reminders: Reminder[];
   public readonly monthEnum = MonthEnum;
-  public readonly weekDays = WeekDays;
+  @Input() public reminders: Reminder[];
 
-  constructor(public monthService: MonthService) {
+  constructor(
+    public monthService: MonthService,
+    public weatherService: WeatherService,
+    private _http: HttpClient
+  ) {
     this.monthService.setupMonth();
+    this.getReminders();
   }
 
   ngOnInit(): void {}
-
-  public isOffMonth(weekNumber: number, dayOfWeek: number): boolean {
-    const week = this.monthService.currentMonth["week_" + (weekNumber + 1)];
-    const monthName = week[dayOfWeek].format("MMM");
-    const currentMonth = this.monthService.currentMonth.today.format('MMM');
-
-    return monthName != currentMonth;
-  }
 
   public nextMonth(): void {
     const nextMonth = this.monthService.getDesiredMonth('next');
@@ -40,10 +38,10 @@ export class CalendarComponent implements OnInit {
   }
 
   public remindersThisDay(weekNumber: number, dayOfWeek: number) {
-    const week = this.monthService.getWeek(++weekNumber);
+    const week = this.monthService.getWeek(weekNumber);
     if (week) {
       const remindersThisDay = this.reminders.filter( reminder => {
-        if (reminder.day.isSame(week[dayOfWeek], "day"))
+        if (Moment(reminder.day).isSame(week[dayOfWeek], "day"))
           return reminder;
       })
       return remindersThisDay;
@@ -51,12 +49,10 @@ export class CalendarComponent implements OnInit {
     return [];
   }
 
-  public isWeekend(dayOfWeek: number): boolean {
-    return dayOfWeek == this.weekDays.sunday || dayOfWeek == this.weekDays.saturday;
-  }
-
-  public getWeek(weekNumber) {
-    return this.monthService.currentMonth["week_" + (weekNumber + 1)];
+  public getReminders(): void {
+    this._http.get<Reminder[]>("/assets/mockData/mock-reminders.json").subscribe( res => {
+      this.reminders = res;
+    })
   }
 
   public get selectedMonth(): string {

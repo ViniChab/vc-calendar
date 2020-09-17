@@ -5,5 +5,4 @@ export interface Reminder {
   day: Moment.Moment;
   label: string;
 	time: Moment.Moment;
-	forecast?: string;
 }

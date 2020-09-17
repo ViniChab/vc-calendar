@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
+import * as Moment from "moment";
 
 import { Month } from '../../models/month.model';
 import { MonthEnum } from '../../enums/month.enum';
 import { MomentWeekDays } from '../../enums/momentWeekdays.enum';
-import * as Moment from "moment";
+import { WeekDays } from '../../enums/weekDays.enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MonthService {
-
+  public readonly monthEnum = MonthEnum;
+  public readonly weekDays = WeekDays;
   public currentYear = Moment().format('YYYY');
   public currentMonthNumber = Moment().month();
   public currentMonth: Month = {
@@ -19,7 +21,7 @@ export class MonthService {
     week_3: [],
     week_4: [],
     week_5: [],
-    week_6: [],
+    week_6: []
   };
 
   constructor() { }
@@ -29,7 +31,7 @@ export class MonthService {
     this._setFirstDays(month);
     let dayOfMonth = 1;
 
-    for (let weekNumber = 1; weekNumber <= MonthEnum.weeksInAMonth; weekNumber++) {
+    for (let weekNumber = 0; weekNumber < MonthEnum.weeksInAMonth; weekNumber++) {
       let dayOfWeek = this.getWeek(weekNumber).length;
 
       while (dayOfWeek < MonthEnum.daysInAWeek) {
@@ -42,7 +44,11 @@ export class MonthService {
   }
 
   public getWeek(weekNumber: number): Moment.Moment[] {
-    return this.currentMonth[`week_${weekNumber}`];
+    return this.currentMonth[`week_${++weekNumber}`];
+  }
+
+  public getDay(weekNumber: number, dayOfWeek: number) {
+    return this.getWeek(weekNumber)[dayOfWeek]
   }
 
   public getDesiredMonth(type: "next" | "previous"): Moment.Moment {
@@ -59,6 +65,18 @@ export class MonthService {
 
     this.currentYear = desiredMonth.format('YYYY');
     return desiredMonth;
+  }
+
+  public isWeekend(dayOfWeek: number): boolean {
+    return dayOfWeek == this.weekDays.sunday || dayOfWeek == this.weekDays.saturday;
+  }
+
+  public isOffMonth(weekNumber: number, dayOfWeek: number): boolean {
+    const week = this.currentMonth["week_" + (weekNumber + 1)];
+    const monthName = week[dayOfWeek].format("MMM");
+    const currentMonth = this.currentMonth.today.format('MMM');
+
+    return monthName != currentMonth;
   }
 
   private _setFirstDays(month: number): void {

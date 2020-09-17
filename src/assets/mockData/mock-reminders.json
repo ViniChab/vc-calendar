@@ -1,0 +1,56 @@
+[
+  {
+    "city": "Montreal",
+    "day": "2020-09-12",
+    "label": "Go shopping",
+    "time": "13:30"
+  },
+  {
+    "city": "Itajaí",
+    "day": "2020-09-08",
+    "label": "Grab some groceries",
+    "time": "12:00"
+  },
+  {
+    "city": "Navegantes",
+    "day": "2020-09-01",
+    "label": "Visit mom",
+    "time": "14:00"
+  },
+  {
+    "city": "Joinville",
+    "day": "2020-09-16",
+    "label": "Go skating",
+    "time": "10:00"
+  },
+  {
+    "city": "Joinville",
+    "day": "2020-09-16",
+    "label": "Buy some cat food",
+    "time": "13:00"
+  },
+  {
+    "city": "Joinville",
+    "day": "2020-09-27",
+    "label": "Movie with friends",
+    "time": "15:40"
+  },
+  {
+    "city": "Brusque",
+    "day": "2020-10-03",
+    "label": "Visit sister",
+    "time": "21:00"
+  },
+  {
+    "city": "Maringá",
+    "day": "2020-09-22",
+    "label": "Theater night",
+    "time": "22:45"
+  },
+  {
+    "city": "Paranavaí",
+    "day": "2020-10-09",
+    "label": "Buy gift for dad",
+    "time": "13:00"
+  }
+]
