@@ -18,19 +18,19 @@
     "time": "14:00"
   },
   {
-    "city": "Joinville",
+    "city": "Florianópolis",
     "day": "2020-09-16",
     "label": "Go skating",
     "time": "10:00"
   },
   {
-    "city": "Joinville",
+    "city": "Florianópolis",
     "day": "2020-09-16",
     "label": "Buy some cat food",
     "time": "13:00"
   },
   {
-    "city": "Joinville",
+    "city": "Florianópolis",
     "day": "2020-09-27",
     "label": "Movie with friends",
     "time": "15:40"
@@ -52,5 +52,11 @@
     "day": "2020-10-09",
     "label": "Buy gift for dad",
     "time": "13:00"
+  },
+  {
+    "city": "Paranavaí",
+    "day": "2020-08-30",
+    "label": "Medical appointment",
+    "time": "14:15"
   }
 ]

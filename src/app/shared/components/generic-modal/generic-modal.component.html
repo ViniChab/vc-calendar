@@ -1,5 +1,8 @@
 <div [ngClass]="{ hidden: !isOpen }" class="modal-backdrop"></div>
-<div [ngClass]="{ hidden: !isOpen }" class="modal-wrapper">
+<div
+  [ngClass]="{ hidden: !isOpen, 'throw-left': throwLeft }"
+  class="modal-wrapper"
+>
   <div class="modal-header">
     <h1>
       <ng-content select="[header]"></ng-content>

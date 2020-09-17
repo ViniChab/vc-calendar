@@ -1,0 +1,19 @@
+@import "../../../../assets/styles/genericModal.scss";
+
+form {
+  .form-group {
+    label {
+      margin-bottom: 6px;
+
+      &:not(:first-child) {
+        margin-top: 25px;
+      }
+    }
+
+    small {
+      position: absolute;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+  }
+}

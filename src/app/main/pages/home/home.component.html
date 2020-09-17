@@ -1,2 +1,16 @@
-<app-calendar [reminders]="reminders" ></app-calendar>
-<app-reminder (added)="onReminderAdded($event)"></app-reminder>
+<app-calendar
+  (openReminder)="openReminder = $event"
+  [reminders]="reminders"
+></app-calendar>
+
+<app-reminder
+  [reminder]="openReminder"
+  [modalOpen]="isModalOpen || openReminder"
+  (close)="isModalOpen = null; openReminder = null"
+  (added)="onReminderAdded($event)"
+  (edited)="onReminderChanged($event)"
+></app-reminder>
+
+<button (click)="openModal()" class="btn btn-primary add-btn">
+  <fa-icon [icon]="faPlus"></fa-icon>
+</button>

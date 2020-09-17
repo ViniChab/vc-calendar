@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class GenericModalComponent implements OnInit {
   @Input() public isOpen: boolean = false;
+  @Input() public throwLeft: boolean = false;
 
   constructor() { }
 

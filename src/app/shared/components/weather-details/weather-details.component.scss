@@ -1,0 +1,14 @@
+ul {
+  position: absolute;
+  background: white;
+  padding: 24px;
+  padding-left: 48px;
+  top: 0;
+  right: -364px;
+  width: 340px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

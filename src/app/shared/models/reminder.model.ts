@@ -4,5 +4,6 @@ export interface Reminder {
   city: string;
   day: Moment.Moment;
   label: string;
-	time: Moment.Moment;
+  time: Moment.Moment;
+  forecast: any;
 }

@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import * as Moment from 'moment';
 
 import { MonthService } from "../../services/month/month.service";
@@ -15,14 +14,13 @@ import { MonthEnum } from '../../enums/month.enum';
 export class CalendarComponent implements OnInit {
   public readonly monthEnum = MonthEnum;
   @Input() public reminders: Reminder[];
+  @Output() public openReminder = new EventEmitter();
 
   constructor(
     public monthService: MonthService,
-    public weatherService: WeatherService,
-    private _http: HttpClient
+    public weatherService: WeatherService
   ) {
     this.monthService.setupMonth();
-    this.getReminders();
   }
 
   ngOnInit(): void {}
@@ -49,10 +47,8 @@ export class CalendarComponent implements OnInit {
     return [];
   }
 
-  public getReminders(): void {
-    this._http.get<Reminder[]>("/assets/mockData/mock-reminders.json").subscribe( res => {
-      this.reminders = res;
-    })
+  public emitOpenReminder(reminder: Reminder): void {
+    this.openReminder.emit(reminder);
   }
 
   public get selectedMonth(): string {

@@ -1,8 +1,4 @@
-<button (click)="openModal()" class="btn btn-primary add-btn">
-  <fa-icon [icon]="faPlus"></fa-icon>
-</button>
-
-<app-generic-modal [isOpen]="modalOpen">
+<app-generic-modal [throwLeft]="!!reminder?.forecast" [isOpen]="modalOpen">
   <ng-container header> {{ "title.newReminder" | translate }} </ng-container>
   <ng-container body>
     <form (submit)="submit()" [formGroup]="newReminderForm">
@@ -125,5 +121,8 @@
         </button>
       </div>
     </form>
+    <div *ngIf="isEdit" class="weather-info">
+      <app-weather-details [reminder]="reminder"></app-weather-details>
+    </div>
   </ng-container>
 </app-generic-modal>

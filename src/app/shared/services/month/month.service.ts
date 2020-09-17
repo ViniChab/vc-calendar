@@ -89,7 +89,7 @@ export class MonthService {
   private _insertDaysBefore(day: Moment.Moment, weekday: number): void {
     if (weekday !== MomentWeekDays.sunday) {
       const dayBefore = this._copyWithoutReference(day.subtract(1, "day"));
-      this.currentMonth.week_1.push(Moment(dayBefore));
+      this.currentMonth.week_1.unshift(Moment(dayBefore));
 
       return this._insertDaysBefore(day, day.isoWeekday());
     }

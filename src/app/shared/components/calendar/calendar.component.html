@@ -1,9 +1,13 @@
 <div class="calendar-wrapper">
 
   <div class="month-selector">
-    <button (click)="previousMonth()" class="btn btn-primary previous-btn"> Previous </button>
+    <button (click)="previousMonth()" class="btn btn-primary previous-btn">
+      {{ "label.previous" | translate }}
+    </button>
     <p> {{ "month." + selectedMonth | translate }} {{ currentYear }} </p>
-    <button (click)="nextMonth()" class="btn btn-primary next-btn"> Next </button>
+    <button (click)="nextMonth()" class="btn btn-primary next-btn">
+      {{ "label.next" | translate }}
+    </button>
   </div>
 
   <table>
@@ -31,10 +35,7 @@
           <ng-container
             *ngFor="let reminder of remindersThisDay(weekNumber, dayOfWeek); let i = index"
           >
-            <div [title]="reminder.label" class="reminder color_{{weekNumber + dayOfWeek + i % 10}}">
-              <fa-icon
-                [icon]="weatherService.getWeather(monthService.getDay(weekNumber, dayOfWeek))"
-              ></fa-icon>
+            <div (click)="emitOpenReminder(reminder)" [title]="reminder.label" class="reminder color_{{weekNumber + dayOfWeek + i % 10}}">
               {{reminder.label}}
             </div>
           </ng-container>

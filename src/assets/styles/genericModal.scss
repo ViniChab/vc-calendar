@@ -1,0 +1,19 @@
+.buttons-wrapper {
+  width: 100%;
+  text-align: right;
+
+  button {
+    margin-top: 15px;
+    height: 38px;
+    width: 76px;
+
+    &:last-child {
+      margin-left: 8px;
+    }
+
+    img {
+      height: 42px;
+      transform: translateY(-9px);
+    }
+  }
+}

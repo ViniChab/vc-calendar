@@ -24,6 +24,10 @@
   transition: 0.2s;
   z-index: 12;
 
+  &.throw-left {
+    left: 42%;
+  }
+
   .modal-header,
   .modal-body {
     padding: 24px;

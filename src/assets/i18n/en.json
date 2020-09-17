@@ -28,10 +28,13 @@
     "label": "Label",
     "time": "Time",
     "day": "Day",
-    "city": "City"
+    "city": "City",
+    "previous": "Previous",
+    "next": "Next"
   },
   "title": {
-    "newReminder": "New reminder"
+    "newReminder": "New reminder",
+    "reminderDetails": "Reminder details"
   },
   "error": {
     "required": "This field is required",

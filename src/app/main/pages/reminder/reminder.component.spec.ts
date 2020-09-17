@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewReminderComponent } from './new-reminder.component';
+import { ReminderComponent } from './reminder.component';
 
-describe('NewReminderComponent', () => {
-  let component: NewReminderComponent;
-  let fixture: ComponentFixture<NewReminderComponent>;
+describe('ReminderComponent', () => {
+  let component: ReminderComponent;
+  let fixture: ComponentFixture<ReminderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewReminderComponent ]
+      declarations: [ ReminderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NewReminderComponent);
+    fixture = TestBed.createComponent(ReminderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

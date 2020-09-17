@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms'
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule } from 'ngx-mask'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { ReminderComponent } from './reminder/reminder.component';
 import { SharedModule } from '../../shared/shared.module';
 import { HomeComponent } from './home/home.component';
-import { NewReminderComponent } from './new-reminder/new-reminder.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    NewReminderComponent
+    ReminderComponent,
   ],
   exports: [
     HomeComponent
