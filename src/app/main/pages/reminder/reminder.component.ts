@@ -1,9 +1,9 @@
 import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import * as Moment from 'moment';
+import * as Moment from "moment";
 
 import { WeatherService } from "../../../shared/services/weather/weather.service";
-import { Reminder } from 'src/app/shared/models/reminder.model';
+import { Reminder } from "src/app/shared/models/reminder.model";
 
 @Component({
   selector: "app-reminder",
@@ -13,16 +13,16 @@ import { Reminder } from 'src/app/shared/models/reminder.model';
 export class ReminderComponent implements OnChanges {
   @Input() public nextId: number;
   @Input() public reminder: Reminder;
-  @Input() public modalOpen: boolean = false;
+  @Input() public modalOpen = false;
   @Output() public added = new EventEmitter();
   @Output() public edited = new EventEmitter();
-  @Output() public close = new EventEmitter();
-  public submitted: boolean = false;
-  public isEdit: boolean = false;
-  public isCityValid: boolean = true;
-  public loadingSubmit: boolean = false;
-  public loadingInfo: boolean = false;
+  @Output() public modalClose = new EventEmitter();
   public reminderForm: FormGroup;
+  public submitted = false;
+  public isEdit = false;
+  public isCityValid = true;
+  public loadingSubmit = false;
+  public loadingInfo = false;
 
   @ViewChild("city") private _city: ElementRef;
 
@@ -44,13 +44,13 @@ export class ReminderComponent implements OnChanges {
       this._weatherService.getForecast(simpleChanges.reminder?.currentValue).then( reminder => {
         this._setFormEdit(reminder);
         this.loadingInfo = false;
-      })
+      });
     }
   }
 
   public closeModal(): void {
     this.reminder = null;
-    this.close.emit();
+    this.modalClose.emit();
     this._resetForm();
   }
 
@@ -99,7 +99,7 @@ export class ReminderComponent implements OnChanges {
   private _setFormEdit(reminder: Reminder): void {
     const day = Moment(reminder.day).format("DD/MM/YYYY");
     const time =
-      typeof reminder.time == "string"
+      typeof reminder.time === "string"
         ? reminder.time
         : Moment(reminder.time).format("HH:mm");
 

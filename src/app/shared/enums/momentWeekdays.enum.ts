@@ -5,5 +5,5 @@ export enum MomentWeekDays {
   thursday = 4,
   friday = 5,
   saturday = 6,
-  sunday = 7
+  sunday = 7,
 }

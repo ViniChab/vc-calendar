@@ -1,7 +1,7 @@
 import * as Moment from "moment";
 
 export interface Month {
-  today: Moment.Moment,
+  today: Moment.Moment;
   week_1: Moment.Moment[];
   week_2: Moment.Moment[];
   week_3: Moment.Moment[];

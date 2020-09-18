@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   public reminders: Reminder[] = [];
   public openReminder: Reminder = null;
   public faPlus: IconDefinition = faPlus;
-  public isModalOpen: boolean = false;
+  public isModalOpen = false;
 
   constructor(private _http: HttpClient) {
     this._getReminders();
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
 
   public onReminderChanged(editedReminder: Reminder): void {
     const indexChanged = this.reminders.indexOf(
-      this.reminders.find((reminder) => reminder.id == editedReminder.id)
+      this.reminders.find((reminder) => +reminder.id === +editedReminder.id)
     );
 
     this.reminders[indexChanged] = editedReminder;

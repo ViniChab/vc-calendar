@@ -1,12 +1,11 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from "@angular/core";
 
-import { Month } from '../models/month.model';
+import { Month } from "../models/month.model";
 
 @Pipe({
-  name: 'day'
+  name: "day",
 })
 export class DayPipe implements PipeTransform {
-
   public transform(month: Month, ...args: number[]): string {
     const weekNumber = args[0] + 1;
     const dayOfWeek = args[1];

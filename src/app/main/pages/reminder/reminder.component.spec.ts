@@ -1,11 +1,11 @@
 import { HttpClientModule } from "@angular/common/http";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
+import { FormGroup } from "@angular/forms";
 
 import { ReminderComponent } from "./reminder.component";
 import { AppModule } from ".././../../app.module";
 import { SharedModule } from "src/app/shared/shared.module";
-import { FormGroup } from '@angular/forms';
 
 describe("ReminderComponent", () => {
   let component: ReminderComponent;

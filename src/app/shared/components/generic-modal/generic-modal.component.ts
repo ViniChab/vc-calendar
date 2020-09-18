@@ -1,15 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-generic-modal',
-  templateUrl: './generic-modal.component.html',
-  styleUrls: ['./generic-modal.component.scss']
+  selector: "app-generic-modal",
+  templateUrl: "./generic-modal.component.html",
+  styleUrls: ["./generic-modal.component.scss"],
 })
 export class GenericModalComponent implements OnInit {
-  @Input() public isOpen: boolean = false;
-  @Input() public throwLeft: boolean = false;
+  @Input() public isOpen = false;
+  @Input() public throwLeft = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 }

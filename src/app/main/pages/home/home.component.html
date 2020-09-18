@@ -7,7 +7,7 @@
   [reminder]="openReminder"
   [modalOpen]="isModalOpen || openReminder"
   [nextId]="reminders.length + 1"
-  (close)="isModalOpen = null; openReminder = null"
+  (modalClose)="isModalOpen = null; openReminder = null"
   (added)="onReminderAdded($event)"
   (edited)="onReminderChanged($event)"
 ></app-reminder>
