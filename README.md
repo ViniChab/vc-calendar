@@ -8,4 +8,4 @@
 * Clone this repository;
 * Run `npm i` at its root folder;
 * Run `npm start` in order to get it up and running;
-* Access it by accesing `http://localhost:4200`;
+* Take a look by accesing `http://localhost:4200`;
