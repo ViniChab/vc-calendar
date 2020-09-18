@@ -11,6 +11,7 @@ import { Reminder } from 'src/app/shared/models/reminder.model';
   styleUrls: ["./reminder.component.scss"],
 })
 export class ReminderComponent implements OnChanges {
+  @Input() public nextId: number;
   @Input() public reminder: Reminder;
   @Input() public modalOpen: boolean = false;
   @Output() public added = new EventEmitter();
@@ -69,16 +70,18 @@ export class ReminderComponent implements OnChanges {
           reminderForm.day = Moment(reminderForm.day, "DD/MM/YYYY");
           reminderForm.time = Moment(reminderForm.time, "HH:mm");
 
-          this.isEdit ?
-            this.edited.emit(reminderForm) :
-            this.added.emit(reminderForm);
+          if (this.isEdit) {
+            reminderForm.id = this.reminder.id || this.nextId;
+            return this.edited.emit(reminderForm);
+          }
 
-          this.closeModal();
+          reminderForm.id = this.nextId;
+          this.added.emit(reminderForm);
         })
         .catch((error) => {
           this.isCityValid = false;
           this.loading = false;
-        });
+        }).finally( () => this.closeModal() );
     }
   }
 

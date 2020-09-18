@@ -34,7 +34,8 @@
   },
   "title": {
     "newReminder": "New reminder",
-    "reminderDetails": "Reminder details"
+    "reminderDetails": "Reminder details",
+    "editReminder": "Edit reminder"
   },
   "error": {
     "required": "This field is required",

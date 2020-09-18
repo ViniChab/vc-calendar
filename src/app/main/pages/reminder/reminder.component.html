@@ -1,5 +1,6 @@
 <app-generic-modal [throwLeft]="!!reminder?.forecast" [isOpen]="modalOpen">
-  <ng-container header> {{ "title.newReminder" | translate }} </ng-container>
+  <ng-container *ngIf="!isEdit" header> {{ "title.newReminder" | translate }} </ng-container>
+  <ng-container *ngIf="isEdit" header> {{ "title.editReminder" | translate }} </ng-container>
   <ng-container body>
     <form (submit)="submit()" [formGroup]="newReminderForm">
       <div class="form-group">

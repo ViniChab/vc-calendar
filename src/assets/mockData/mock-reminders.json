@@ -1,59 +1,69 @@
 [
   {
+    "id": "1",
     "city": "Montreal",
     "day": "2020-09-12",
     "label": "Go shopping",
     "time": "13:30"
   },
   {
+    "id": "2",
     "city": "Itajaí",
     "day": "2020-09-08",
     "label": "Grab some groceries",
     "time": "12:00"
   },
   {
+    "id": "3",
     "city": "Navegantes",
     "day": "2020-09-01",
     "label": "Visit mom",
     "time": "14:00"
   },
   {
+    "id": "4",
     "city": "Florianópolis",
     "day": "2020-09-16",
     "label": "Go skating",
     "time": "10:00"
   },
   {
+    "id": "5",
     "city": "Florianópolis",
     "day": "2020-09-16",
     "label": "Buy some cat food",
     "time": "13:00"
   },
   {
+    "id": "6",
     "city": "Florianópolis",
     "day": "2020-09-27",
     "label": "Movie with friends",
     "time": "15:40"
   },
   {
+    "id": "7",
     "city": "Brusque",
     "day": "2020-10-03",
     "label": "Visit sister",
     "time": "21:00"
   },
   {
+    "id": "8",
     "city": "Maringá",
     "day": "2020-09-22",
     "label": "Theater night",
     "time": "22:45"
   },
   {
+    "id": "9",
     "city": "Paranavaí",
     "day": "2020-10-09",
     "label": "Buy gift for dad",
     "time": "13:00"
   },
   {
+    "id": "10",
     "city": "Paranavaí",
     "day": "2020-08-30",
     "label": "Medical appointment",

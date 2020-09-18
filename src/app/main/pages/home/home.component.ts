@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { WeatherService } from 'src/app/shared/services/weather/weather.service';
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { Reminder } from "../../../shared/models/reminder.model";
 
@@ -17,10 +16,7 @@ export class HomeComponent implements OnInit {
   public faPlus: IconDefinition = faPlus;
   public isModalOpen: boolean = false;
 
-  constructor(
-    private _weatherService: WeatherService,
-    private _http: HttpClient
-  ) {
+  constructor(private _http: HttpClient) {
     this._getReminders();
   }
 
@@ -30,8 +26,12 @@ export class HomeComponent implements OnInit {
     this.reminders.push(reminder);
   }
 
-  public onReminderChanged(reminder: Reminder): void {
+  public onReminderChanged(editedReminder: Reminder): void {
+    const indexChanged = this.reminders.indexOf(
+      this.reminders.find((reminder) => reminder.id == editedReminder.id)
+    );
 
+    this.reminders[indexChanged] = editedReminder;
   }
 
   public openModal(): void {
@@ -39,8 +39,10 @@ export class HomeComponent implements OnInit {
   }
 
   private _getReminders(): void {
-    this._http.get<Reminder[]>("/assets/mockData/mock-reminders.json").subscribe( res => {
-      this.reminders.push(...res);
-    })
+    this._http
+      .get<Reminder[]>("/assets/mockData/mock-reminders.json")
+      .subscribe((res) => {
+        this.reminders.push(...res);
+      });
   }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
 import * as Moment from 'moment';
 
 import { MonthService } from "../../services/month/month.service";
@@ -11,7 +11,7 @@ import { MonthEnum } from '../../enums/month.enum';
   templateUrl: "./calendar.component.html",
   styleUrls: ["./calendar.component.scss"],
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent implements OnChanges {
   public readonly monthEnum = MonthEnum;
   @Input() public reminders: Reminder[];
   @Output() public openReminder = new EventEmitter();
@@ -23,7 +23,9 @@ export class CalendarComponent implements OnInit {
     this.monthService.setupMonth();
   }
 
-  ngOnInit(): void {}
+  ngOnChanges(simpleChanges: SimpleChanges): void {
+    console.log(simpleChanges)
+  }
 
   public nextMonth(): void {
     const nextMonth = this.monthService.getDesiredMonth('next');
