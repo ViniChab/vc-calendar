@@ -1,35 +1,35 @@
 <ul *ngIf="reminder?.forecast">
   <li>
-    Average pressure: <b> {{ reminder.forecast.pres }} mb </b>
+    {{ "weather.avgPressure" | translate }} <b> {{ reminder.forecast.pres }} mb </b>
   </li>
   <li>
-    Average wind speed: <b> {{ reminder.forecast.wind_spd }} m/s </b>
+    {{ "weather.avgWindSpd" | translate }} <b> {{ reminder.forecast.wind_spd }} m/s </b>
   </li>
   <li>
-    Wind gust speed: <b> {{ reminder.forecast.wind_gust_spd }} m/s </b>
+    {{ "weather.windGustSpd" | translate }} <b> {{ reminder.forecast.wind_gust_spd }} m/s </b>
   </li>
   <li>
-    Average wind direction: <b> {{ reminder.forecast.wind_dir }}º </b>
+    {{ "weather.avgWindDir" | translate }} <b> {{ reminder.forecast.wind_dir }}º </b>
   </li>
   <li>
-    Average temperature: <b> {{ reminder.forecast.temp }}ºC </b>
+    {{ "weather.avgTemp" | translate }} <b> {{ reminder.forecast.temp }}ºC </b>
   </li>
   <li>
-    Maximum temperature: <b> {{ reminder.forecast.max_temp }}ºC </b>
+    {{ "weather.maxTemp" | translate }} <b> {{ reminder.forecast.max_temp }}ºC </b>
   </li>
   <li>
-    Minimum temperature: <b> {{ reminder.forecast.min_temp }}ºC </b>
+    {{ "weather.minTemp" | translate }} <b> {{ reminder.forecast.min_temp }}ºC </b>
   </li>
   <li>
-    Average relative humidity: <b> {{ reminder.forecast.rh }}% </b>
+    {{ "weather.avgRelativeHum" | translate }} <b> {{ reminder.forecast.rh }}% </b>
   </li>
   <li>
-    Average cloud coverage: <b> {{ reminder.forecast.clouds }}% </b>
+    {{ "weather.avgCloud" | translate }} <b> {{ reminder.forecast.clouds }}% </b>
   </li>
   <li>
-    Accumulated precipitation: <b> {{ reminder.forecast.precip }} mm </b>
+    {{ "weather.accPrec" | translate }} <b> {{ reminder.forecast.precip }} mm </b>
   </li>
   <li>
-    Accumulated snowfall: <b> {{ reminder.forecast.snow }} mm </b>
+    {{ "weather.accSnow" | translate }} <b> {{ reminder.forecast.snow }} mm </b>
   </li>
 </ul>

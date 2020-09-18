@@ -44,5 +44,18 @@
   },
   "info": {
     "maximum30": "Maximum 30 characters"
+  },
+  "weather": {
+    "avgPressure": "Average pressure:",
+    "avgWindSpd": "Average wind speed:",
+    "windGustSpd": "Wind gust speed:",
+    "avgWindDir": "Average wind direction:",
+    "avgTemp": "Average temperature:",
+    "maxTemp": "Maximum temperature:",
+    "minTemp": "Minimum temperature:",
+    "avgRelativeHum": "Average relative humidity:",
+    "avgCloud": "Average cloud coverage:",
+    "accPrec": "Accumulated precipitation:",
+    "accSnow": "Accumulated snowfall:"
   }
 }
