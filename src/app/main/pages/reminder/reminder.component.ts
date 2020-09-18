@@ -75,16 +75,18 @@ export class ReminderComponent implements OnChanges {
 
           if (this.isEdit) {
             reminderForm.id = this.reminder.id || this.nextId;
-            return this.edited.emit(reminderForm);
+            this.edited.emit(reminderForm);
+          } else {
+            reminderForm.id = this.nextId;
+            this.added.emit(reminderForm);
           }
 
-          reminderForm.id = this.nextId;
-          this.added.emit(reminderForm);
+          this.closeModal();
         })
         .catch((error) => {
           this.isCityValid = false;
           this.loadingSubmit = false;
-        }).finally( () => this.closeModal() );
+        });
     }
   }
 

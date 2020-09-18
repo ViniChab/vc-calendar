@@ -1,2 +1,11 @@
-# vc-calendar
-A calendar made using Angular and the Moment.js lib
+# VC - Calendar
+
+* A calendar made using Angular, the Moment.js lib and the Weatherbit API;
+* The calendar itself was completely made from scratch;
+
+# Running the project
+
+* Clone this repository;
+* Run `npm i` at its root folder;
+* Run `npm start` in order to get it up and running;
+* Access it by accesing `http://localhost:4200`;
