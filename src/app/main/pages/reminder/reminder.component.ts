@@ -22,7 +22,7 @@ export class ReminderComponent implements OnChanges {
   public isCityValid: boolean = true;
   public loadingSubmit: boolean = false;
   public loadingInfo: boolean = false;
-  public newReminderForm: FormGroup;
+  public reminderForm: FormGroup;
 
   @ViewChild("city") private _city: ElementRef;
 
@@ -30,7 +30,7 @@ export class ReminderComponent implements OnChanges {
     private _weatherService: WeatherService,
     private _formBuilder: FormBuilder
   ) {
-    this.newReminderForm = this._formBuilder.group({
+    this.reminderForm = this._formBuilder.group({
       label: ["", [Validators.required, Validators.maxLength(30)]],
       day: ["", [Validators.required]],
       time: ["", [Validators.required]],
@@ -65,11 +65,11 @@ export class ReminderComponent implements OnChanges {
   public submit(): void {
     this.submitted = true;
 
-    if (this.newReminderForm.valid) {
+    if (this.reminderForm.valid) {
       this.loadingSubmit = true;
       this.validateCity(this._city.nativeElement.value)
         .then((res) => {
-          const reminderForm: Reminder = this.newReminderForm.getRawValue();
+          const reminderForm: Reminder = this.reminderForm.getRawValue();
           reminderForm.day = Moment(reminderForm.day, "DD/MM/YYYY");
           reminderForm.time = Moment(reminderForm.time, "HH:mm");
 
@@ -93,7 +93,7 @@ export class ReminderComponent implements OnChanges {
     this.isEdit = false;
     this.loadingSubmit = false;
     this.isCityValid = true;
-    this.newReminderForm.reset();
+    this.reminderForm.reset();
   }
 
   private _setFormEdit(reminder: Reminder): void {
@@ -103,7 +103,7 @@ export class ReminderComponent implements OnChanges {
         ? reminder.time
         : Moment(reminder.time).format("HH:mm");
 
-    this.newReminderForm = this._formBuilder.group({
+    this.reminderForm = this._formBuilder.group({
       label: [reminder.label, [Validators.required, Validators.maxLength(30)]],
       day: [day, [Validators.required]],
       time: [time, [Validators.required]],

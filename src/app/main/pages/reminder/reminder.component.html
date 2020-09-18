@@ -4,7 +4,7 @@
   <ng-container *ngIf="!isEdit" header> {{ "title.newReminder" | translate }} </ng-container>
   <ng-container *ngIf="isEdit" header> {{ "title.editReminder" | translate }} </ng-container>
   <ng-container body>
-    <form (submit)="submit()" [formGroup]="newReminderForm">
+    <form (submit)="submit()" [formGroup]="reminderForm">
       <div class="form-group">
         <label for="label"> {{ "label.label" | translate }} </label>
         <input
@@ -16,14 +16,14 @@
           name="label"
           [formControlName]="'label'"
           [ngClass]="{
-            'is-invalid': newReminderForm.controls['label'].invalid && submitted
+            'is-invalid': reminderForm.controls['label'].invalid && submitted
           }"
         />
-        <small *ngIf="!newReminderForm.controls['label'].invalid || !submitted">
+        <small *ngIf="!reminderForm.controls['label'].invalid || !submitted">
           {{ "info.maximum30" | translate }}
         </small>
         <small
-          *ngIf="newReminderForm.controls['label'].invalid && submitted"
+          *ngIf="reminderForm.controls['label'].invalid && submitted"
           class="text-danger"
         >
           {{ "error.maximum30Error" | translate }}
@@ -41,11 +41,11 @@
           [dropSpecialCharacters]="false"
           [formControlName]="'time'"
           [ngClass]="{
-            'is-invalid': newReminderForm.controls['time'].invalid && submitted
+            'is-invalid': reminderForm.controls['time'].invalid && submitted
           }"
         />
         <small
-          *ngIf="newReminderForm.controls['time'].invalid && submitted"
+          *ngIf="reminderForm.controls['time'].invalid && submitted"
           class="text-danger"
         >
           {{ "error.required" | translate }}
@@ -63,11 +63,11 @@
           [dropSpecialCharacters]="false"
           [formControlName]="'day'"
           [ngClass]="{
-            'is-invalid': newReminderForm.controls['day'].invalid && submitted
+            'is-invalid': reminderForm.controls['day'].invalid && submitted
           }"
         />
         <small
-          *ngIf="newReminderForm.controls['day'].invalid && submitted"
+          *ngIf="reminderForm.controls['day'].invalid && submitted"
           class="text-danger"
         >
           {{ "error.required" | translate }}
@@ -85,20 +85,20 @@
           [formControlName]="'city'"
           [ngClass]="{
             'is-invalid':
-              (newReminderForm.controls['city'].errors?.required ||
+              (reminderForm.controls['city'].errors?.required ||
                 !isCityValid) &&
               submitted
           }"
         />
         <small
-          *ngIf="newReminderForm.controls['city'].errors?.required && submitted"
+          *ngIf="reminderForm.controls['city'].errors?.required && submitted"
           class="text-danger"
         >
           {{ "error.required" | translate }}
         </small>
         <small
           *ngIf="
-            !newReminderForm.controls['city'].errors?.required &&
+            !reminderForm.controls['city'].errors?.required &&
             !isCityValid &&
             submitted
           "
