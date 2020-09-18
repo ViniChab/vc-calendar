@@ -20,7 +20,8 @@ export class ReminderComponent implements OnChanges {
   public submitted: boolean = false;
   public isEdit: boolean = false;
   public isCityValid: boolean = true;
-  public loading: boolean = false;
+  public loadingSubmit: boolean = false;
+  public loadingInfo: boolean = false;
   public newReminderForm: FormGroup;
 
   @ViewChild("city") private _city: ElementRef;
@@ -39,8 +40,10 @@ export class ReminderComponent implements OnChanges {
 
   ngOnChanges(simpleChanges: SimpleChanges): void {
     if (simpleChanges.reminder?.currentValue) {
+      this.loadingInfo = true;
       this._weatherService.getForecast(simpleChanges.reminder?.currentValue).then( reminder => {
         this._setFormEdit(reminder);
+        this.loadingInfo = false;
       })
     }
   }
@@ -63,7 +66,7 @@ export class ReminderComponent implements OnChanges {
     this.submitted = true;
 
     if (this.newReminderForm.valid) {
-      this.loading = true;
+      this.loadingSubmit = true;
       this.validateCity(this._city.nativeElement.value)
         .then((res) => {
           const reminderForm: Reminder = this.newReminderForm.getRawValue();
@@ -80,7 +83,7 @@ export class ReminderComponent implements OnChanges {
         })
         .catch((error) => {
           this.isCityValid = false;
-          this.loading = false;
+          this.loadingSubmit = false;
         }).finally( () => this.closeModal() );
     }
   }
@@ -88,7 +91,7 @@ export class ReminderComponent implements OnChanges {
   private _resetForm(): void {
     this.submitted = false;
     this.isEdit = false;
-    this.loading = false;
+    this.loadingSubmit = false;
     this.isCityValid = true;
     this.newReminderForm.reset();
   }

@@ -1,3 +1,5 @@
+<app-loading *ngIf="loadingInfo"></app-loading>
+
 <app-generic-modal [throwLeft]="!!reminder?.forecast" [isOpen]="modalOpen">
   <ng-container *ngIf="!isEdit" header> {{ "title.newReminder" | translate }} </ng-container>
   <ng-container *ngIf="isEdit" header> {{ "title.editReminder" | translate }} </ng-container>
@@ -115,10 +117,10 @@
           {{ "label.cancel" | translate }}
         </button>
         <button type="submit" class="btn btn-primary">
-          <ng-container *ngIf="!loading">
+          <ng-container *ngIf="!loadingSubmit">
             {{ "label.save" | translate }}
           </ng-container>
-          <img *ngIf="loading" src="../../../../assets/icons/btn-loading.svg" />
+          <img *ngIf="loadingSubmit" src="../../../../assets/icons/btn-loading.svg" />
         </button>
       </div>
     </form>

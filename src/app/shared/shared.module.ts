@@ -6,6 +6,7 @@ import { DayPipe } from './pipes/day.pipe';
 import { GenericModalComponent } from './components/generic-modal/generic-modal.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { WeatherDetailsComponent } from './components/weather-details/weather-details.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -13,11 +14,13 @@ import { WeatherDetailsComponent } from './components/weather-details/weather-de
     GenericModalComponent,
     DayPipe,
     WeatherDetailsComponent,
+    LoadingComponent,
   ],
   exports: [
     CalendarComponent,
     GenericModalComponent,
-    WeatherDetailsComponent
+    WeatherDetailsComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
